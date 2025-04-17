@@ -1,0 +1,16 @@
+{
+  "name": "diabetes-risk-predictor",
+  "version": "1.0.0",
+  "description": "Fullstack MERN + Python app for diabetes risk prediction based on lifestyle and genetic factors",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\" \"npm run ml\"",
+    "client": "cd client && npm start",
+    "server": "cd server && npm run dev",
+    "ml": "cd ml-model && python app.py"
+  },
+  "author": "Ekemini Thompson",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

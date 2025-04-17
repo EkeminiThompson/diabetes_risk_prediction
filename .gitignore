@@ -1,0 +1,25 @@
+# Node
+node_modules/
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.joblib
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build
+client/build/
+client/dist/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,49 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const InputForm = ({ onResult }) => {
+  const [form, setForm] = useState({
+    pregnancies: '',
+    glucose: '',
+    bloodPressure: '',
+    skinThickness: '',
+    insulin: '',
+    bmi: '',
+    diabetesPedigreeFunction: '',
+    age: ''
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:5000/predict', form);
+      onResult(res.data.prediction);
+    } catch (err) {
+      console.error('Prediction failed:', err);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {Object.entries(form).map(([key, value]) => (
+        <div key={key}>
+          <label>{key}:</label>
+          <input
+            type="number"
+            name={key}
+            value={value}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      ))}
+      <button type="submit">Predict</button>
+    </form>
+  );
+};
+
+export default InputForm;
