@@ -7,8 +7,13 @@ const connectDB = require('./config/db');
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// CORS Configuration
+const corsOptions = {
+  origin: process.env.CLIENT_ORIGIN || '*',
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // Connect to DB
