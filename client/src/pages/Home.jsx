@@ -6,10 +6,18 @@ import axios from 'axios';
 const Home = () => {
   const navigate = useNavigate();
 
-  const handleResult = async (formData) => {
+  const handleResult = async ({ predictionInput, lifestyle }) => {
     try {
-      const res = await axios.post('http://localhost:5000/predict', formData);
-      navigate('/results', { state: { prediction: res.data.prediction } });
+      const res = await axios.post('http://localhost:5000/predict', predictionInput);
+      const prediction = res.data.prediction;
+
+      navigate('/results', {
+        state: {
+          prediction,
+          predictionInput,
+          lifestyle
+        }
+      });
     } catch (error) {
       console.error('Prediction error:', error);
       alert('Prediction failed. Please try again.');
